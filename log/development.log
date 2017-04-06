@@ -762,3 +762,22 @@ Started GET "/assets/application.js?body=1" for ::1 at 2017-04-05 23:06:56 +0900
 
 
 Started GET "/assets/bambi-1.0.0.ttf?20140712" for ::1 at 2017-04-05 23:06:56 +0900
+  [1m[36m (63.0ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (64.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateProducts (20170406105938)
+  [1m[35m (44.1ms)[0m  CREATE TABLE `products` (`id` int(11) auto_increment PRIMARY KEY, `title` varchar(255), `image_url` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (22.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20170406105938')
+  [1m[36m (2.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (6.8ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'mooovi_development'
+  AND fk.table_name = 'products'
+[0m
+  [1m[35m (0.3ms)[0m  SHOW CREATE TABLE `products`
