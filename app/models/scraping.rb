@@ -57,8 +57,15 @@ class Scraping
     page = agent.get(link)
     title = page.at('.entry-title').inner_text
     image_url = page.at('.entry-content img')[:src] if page.at('.entry-content img')
+    director = page.at('.review_details .director span').inner_text if page.at ('.review_details .director span')
+    detail = page.at('.entry-content p').inner_text if page.at ('.entry-content p')
+    open_data = page.at('.review_details .date span').inner_text if page.at('.review_details .date span')
 
-    product = Product.where(title: title, image_url: image_url).first_or_initialize
+    product = Product.where(title: title).first_or_initialize
+    product.image_url = image_url
+    product.director = director
+    product.detail = detail
+    product.open_data = open_data
     product.save
   end
 end
