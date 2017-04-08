@@ -5,7 +5,6 @@ class ReviewsController < RankingController
   end
 
   def create
-    binding.pry
     # Review.create(create_params)
     Review.create(create_params)
     # トップページにリダイレクトする
